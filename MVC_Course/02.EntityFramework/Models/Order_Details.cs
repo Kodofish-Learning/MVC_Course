@@ -12,7 +12,7 @@ namespace _02.EntityFramework.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Order_Detail
+    public partial class Order_Details
     {
         public int OrderID { get; set; }
         public int ProductID { get; set; }
@@ -20,6 +20,6 @@ namespace _02.EntityFramework.Models
         public short Quantity { get; set; }
         public float Discount { get; set; }
     
-        public virtual Order Order { get; set; }
+        public virtual Orders Orders { get; set; }
     }
 }

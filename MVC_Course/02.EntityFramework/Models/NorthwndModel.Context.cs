@@ -13,10 +13,10 @@ namespace _02.EntityFramework.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class NorthwndEntities : DbContext
+    public partial class NorthwndEntities2 : DbContext
     {
-        public NorthwndEntities()
-            : base("name=NorthwndEntities")
+        public NorthwndEntities2()
+            : base("name=NorthwndEntities2")
         {
         }
     
@@ -25,7 +25,7 @@ namespace _02.EntityFramework.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Order_Detail> Order_Details { get; set; }
-        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<Order_Details> Order_Details { get; set; }
+        public virtual DbSet<Orders> Orders { get; set; }
     }
 }

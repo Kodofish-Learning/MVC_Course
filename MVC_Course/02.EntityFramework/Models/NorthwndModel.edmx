@@ -60,7 +60,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NorthwndModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Order_Detail">
+        <EntityType Name="Order_Details">
           <Key>
             <PropertyRef Name="OrderID" />
             <PropertyRef Name="ProductID" />
@@ -70,9 +70,9 @@
           <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Quantity" Type="Int16" Nullable="false" />
           <Property Name="Discount" Type="Single" Nullable="false" />
-          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Details_Orders" FromRole="Order_Details" ToRole="Orders" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Details_Orders" FromRole="Order_Details" ToRole="Orders" />
         </EntityType>
-        <EntityType Name="Order">
+        <EntityType Name="Orders">
           <Key>
             <PropertyRef Name="OrderID" />
           </Key>
@@ -93,8 +93,8 @@
           <NavigationProperty Name="Order_Details" Relationship="Self.FK_Order_Details_Orders" FromRole="Orders" ToRole="Order_Details" />
         </EntityType>
         <Association Name="FK_Order_Details_Orders">
-          <End Role="Orders" Type="Self.Order" Multiplicity="1" />
-          <End Role="Order_Details" Type="Self.Order_Detail" Multiplicity="*" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="Order_Details" Type="Self.Order_Details" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Orders">
               <PropertyRef Name="OrderID" />
@@ -104,9 +104,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="NorthwndEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Order_Details" EntityType="Self.Order_Detail" />
-          <EntitySet Name="Orders" EntityType="Self.Order" />
+        <EntityContainer Name="NorthwndEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Order_Details" EntityType="Self.Order_Details" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
           <AssociationSet Name="FK_Order_Details_Orders" Association="Self.FK_Order_Details_Orders">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="Order_Details" EntitySet="Order_Details" />
@@ -117,9 +117,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="NorthwndModelStoreContainer" CdmEntityContainer="NorthwndEntities">
+        <EntityContainerMapping StorageEntityContainer="NorthwndModelStoreContainer" CdmEntityContainer="NorthwndEntities2">
           <EntitySetMapping Name="Order_Details">
-            <EntityTypeMapping TypeName="NorthwndModel.Order_Detail">
+            <EntityTypeMapping TypeName="NorthwndModel.Order_Details">
               <MappingFragment StoreEntitySet="Order Details">
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
@@ -130,7 +130,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="NorthwndModel.Order">
+            <EntityTypeMapping TypeName="NorthwndModel.Orders">
               <MappingFragment StoreEntitySet="Orders">
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
@@ -163,7 +163,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
