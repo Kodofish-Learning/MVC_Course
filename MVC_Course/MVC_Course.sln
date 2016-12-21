@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01.Project_Template_Introdu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02.EntityFramework", "02.EntityFramework\02.EntityFramework.csproj", "{9BE274B1-8559-4E2A-9CA0-5978D40C909D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{06FDA47C-0440-457E-B9BC-56A345BE451E}"
+	ProjectSection(SolutionItems) = preProject
+		.a11yrc = .a11yrc
+		WebEssentials2015-Settings.json = WebEssentials2015-Settings.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
