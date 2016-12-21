@@ -27,5 +27,6 @@ namespace _02.EntityFramework.Models
     
         public virtual DbSet<Order_Details> Order_Details { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
     }
 }

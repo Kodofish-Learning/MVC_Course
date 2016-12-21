@@ -135,6 +135,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Employee.cs">
+      <DependentUpon>NorthwndModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\NorthwndModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
