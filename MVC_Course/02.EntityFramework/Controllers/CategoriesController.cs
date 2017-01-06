@@ -10,111 +10,135 @@ using _02.EntityFramework.Models;
 
 namespace _02.EntityFramework.Controllers
 {
-    public class OrdersController : Controller
+    public class CategoriesController : Controller
     {
         private NorthwndEntities2 db = new NorthwndEntities2();
 
-        // GET: Orders
+        // GET: Categories
         public ActionResult Index()
         {
-            return View(db.Orders.Take(20).ToList());
+            return View(db.Categories.ToList());
         }
 
-        // GET: Orders/Details/5
+        // GET: Categories/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Orders orders = db.Orders.Find(id);
-            if (orders == null)
+            Category category = db.Categories.Find(id);
+            if (category == null)
             {
                 return HttpNotFound();
             }
-            return View(orders);
+            return View(category);
         }
 
-        // GET: Orders/Create
+        // GET: Categories/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Orders/Create
+        // POST: Categories/Create
         // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrderID,CustomerID,EmployeeID,OrderDate,RequiredDate,ShippedDate,ShipVia,Freight,ShipName,ShipAddress,ShipCity,ShipRegion,ShipPostalCode,ShipCountry")] Orders orders)
+        public ActionResult Create([Bind(Include = "CategoryID,CategoryName,Description,Picture")] Category category)
         {
             if (ModelState.IsValid)
             {
-                db.Orders.Add(orders);
+                db.Categories.Add(category);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(orders);
+            return View(category);
         }
 
-        // GET: Orders/Edit/5
+        // GET: Categories/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Orders orders = db.Orders.Find(id);
-            if (orders == null)
+            Category category = db.Categories.Find(id);
+            if (category == null)
             {
                 return HttpNotFound();
             }
-            return View(orders);
+            return View(category);
         }
 
-        // POST: Orders/Edit/5
+        // POST: Categories/Edit/5
         // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OrderID,CustomerID,EmployeeID,OrderDate,RequiredDate,ShippedDate,ShipVia,Freight,ShipName,ShipAddress,ShipCity,ShipRegion,ShipPostalCode,ShipCountry")] Orders orders)
+        public ActionResult Edit([Bind(Include = "CategoryID,CategoryName,Description,Picture")] Category category)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(orders).State = EntityState.Modified;
+                db.Entry(category).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(orders);
+            return View(category);
         }
 
-        // GET: Orders/Delete/5
+        // GET: Categories/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Orders orders = db.Orders.Find(id);
-            if (orders == null)
+            Category category = db.Categories.Find(id);
+            if (category == null)
             {
                 return HttpNotFound();
             }
-            return View(orders);
+            return View(category);
         }
 
-        // POST: Orders/Delete/5
+        // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Orders orders = db.Orders.Find(id);
-            db.Orders.Remove(orders);
+            Category category = db.Categories.Find(id);
+            db.Categories.Remove(category);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        
+        public ActionResult BatchUpdate()
+        {
+            var categories = db.Categories.ToList();
+            foreach (var item in categories)
+            {
+                item.Description = "這是說明ABC";
+            }
 
+            db.SaveChanges();
+            return View("Index", categories);
+        }
+
+        public ActionResult DeleteFirst()
+        {
+            var category = db.Categories.FirstOrDefault();
+            if (category != null)
+            {
+                var products = category.Products.ToList();
+                db.Products.RemoveRange(products);
+                db.Categories.Remove(category);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -123,7 +147,5 @@ namespace _02.EntityFramework.Controllers
             }
             base.Dispose(disposing);
         }
-
-        
     }
 }

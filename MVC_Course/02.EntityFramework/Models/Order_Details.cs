@@ -21,5 +21,6 @@ namespace _02.EntityFramework.Models
         public float Discount { get; set; }
     
         public virtual Orders Orders { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

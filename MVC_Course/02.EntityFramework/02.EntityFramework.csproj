@@ -130,15 +130,28 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Category.cs">
+      <DependentUpon>NorthwndModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer.cs">
+      <DependentUpon>NorthwndModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CustomerDemographic.cs">
+      <DependentUpon>NorthwndModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Employee.cs">
       <DependentUpon>NorthwndModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MetaData\Category.Partial.cs" />
+    <Compile Include="Models\MetaData\Orders.Partial.cs" />
+    <Compile Include="Models\MetaData\Region.partial.cs" />
     <Compile Include="Models\NorthwndModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -158,6 +171,21 @@
       <DependentUpon>NorthwndModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Order_Details.cs">
+      <DependentUpon>NorthwndModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product.cs">
+      <DependentUpon>NorthwndModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Region.cs">
+      <DependentUpon>NorthwndModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Shipper.cs">
+      <DependentUpon>NorthwndModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Supplier.cs">
+      <DependentUpon>NorthwndModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Territory.cs">
       <DependentUpon>NorthwndModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -226,9 +254,15 @@
     <Content Include="Views\Employees\Details.cshtml" />
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Categories\Delete.cshtml" />
+    <Content Include="Views\Categories\Details.cshtml" />
+    <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\CustomValidation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

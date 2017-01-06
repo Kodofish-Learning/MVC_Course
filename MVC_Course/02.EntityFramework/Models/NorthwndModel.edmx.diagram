@@ -4,13 +4,29 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="efbe1e2b881248eebfd4aae0edafbcef" Name="Diagram1">
+      <Diagram DiagramId="efbe1e2b881248eebfd4aae0edafbcef" Name="Diagram1" ZoomLevel="128">
         <EntityTypeShape EntityType="NorthwndModel.Order_Details" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
         <EntityTypeShape EntityType="NorthwndModel.Orders" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="NorthwndModel.FK_Order_Details_Orders" ManuallyRouted="false" />
         <EntityTypeShape EntityType="NorthwndModel.Employee" Width="1.5" PointX="0.75" PointY="11" />
         <AssociationConnector Association="NorthwndModel.FK_Employees_Employees" />
         <AssociationConnector Association="NorthwndModel.FK_Orders_Employees" />
+        <EntityTypeShape EntityType="NorthwndModel.Category" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="NorthwndModel.Product" Width="1.5" PointX="5.625" PointY="4.125" />
+        <AssociationConnector Association="NorthwndModel.FK_Products_Categories" />
+        <AssociationConnector Association="NorthwndModel.FK_Order_Details_Products" />
+        <EntityTypeShape EntityType="NorthwndModel.CustomerDemographic" Width="1.5" PointX="0.75" PointY="21.875" />
+        <EntityTypeShape EntityType="NorthwndModel.Customer" Width="1.5" PointX="0.75" PointY="17" />
+        <EntityTypeShape EntityType="NorthwndModel.Region" Width="1.5" PointX="5.375" PointY="1.125" />
+        <EntityTypeShape EntityType="NorthwndModel.Shipper" Width="1.5" PointX="0.75" PointY="6.5" />
+        <EntityTypeShape EntityType="NorthwndModel.Supplier" Width="1.5" PointX="3.375" PointY="8.125" />
+        <EntityTypeShape EntityType="NorthwndModel.Territory" Width="1.5" PointX="7.625" PointY="8.625" />
+        <AssociationConnector Association="NorthwndModel.FK_Orders_Customers" />
+        <AssociationConnector Association="NorthwndModel.FK_Orders_Shippers" />
+        <AssociationConnector Association="NorthwndModel.FK_Products_Suppliers" />
+        <AssociationConnector Association="NorthwndModel.FK_Territories_Region" />
+        <AssociationConnector Association="NorthwndModel.CustomerCustomerDemo" />
+        <AssociationConnector Association="NorthwndModel.EmployeeTerritories" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
