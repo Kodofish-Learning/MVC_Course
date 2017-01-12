@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace _02.EntityFramework
+namespace _03.ModelBinding
 {
     public class RouteConfig
     {
@@ -16,9 +16,7 @@ namespace _02.EntityFramework
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index",
-                    id = UrlParameter.Optional },
-                constraints: new { id=@"\d+"}
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

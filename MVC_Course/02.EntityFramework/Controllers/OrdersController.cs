@@ -17,6 +17,9 @@ namespace _02.EntityFramework.Controllers
         // GET: Orders
         public ActionResult Index()
         {
+            ViewData["Message"] = "This is message.";
+            ViewBag.Title = "This is title.";
+            TempData["Temp"] = "This is TempData.";
             return View(db.Orders.Take(20).ToList());
         }
 
@@ -82,6 +85,8 @@ namespace _02.EntityFramework.Controllers
         {
             if (ModelState.IsValid)
             {
+                UpdateModel(orders);
+                TryUpdateModel(orders);
                 db.Entry(orders).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -124,6 +129,25 @@ namespace _02.EntityFramework.Controllers
             base.Dispose(disposing);
         }
 
-        
+        public ActionResult getFile()
+        {
+            byte[] filecontent = GetFileByteArrayFromDB();
+            if (Request.Browser.Browser == "IE" && Convert.ToInt32(Request.Browser.MajorVersion) < 9)
+            {
+                //舊版IE 使用舊的相容性作法
+                return File(filecontent, "text/plain", Server.UrlPathEncode("檔案名稱.txt"));
+            }
+            else
+            {
+                //新版 瀏覽器使用RFC2231規範的Header Value作法
+                return File(filecontent, "text/plain", "檔案名稱.txt");
+            }
+            
+        }
+
+        private byte[] GetFileByteArrayFromDB()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
